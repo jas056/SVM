@@ -1,5 +1,0 @@
-J'ai choisi de mettre les notebooks des premiers tds (à part le td1 où j'ai un peu revu la forme) en l'état et  peuvent paraître un peu brouillon. Ils ont un peu de correction mais aussi des manipulations que j'ai essayé de faire lors des heures de cours. <br>
-
-J'aurais très bien pu faire tous les commentaires ainsi que tout ce qui était demandé mais mon objectif était de vous montrer les difficultés que j'ai pu avoir et donc mes incompréhensions, d'où des notebooks un peu pauvres en commentaires. <br>
-
-Cependant, le td2 sur l'interprétabilité est celui qui m'a permis de bien comprendre le cheminement du raisonnement en revoyant toutes les corrections qui étaient à disposition.
