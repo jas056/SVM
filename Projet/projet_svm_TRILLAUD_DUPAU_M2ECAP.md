@@ -264,7 +264,7 @@ Enfin, nous procédons à la standardisation des variables quantitatives, à l�
 
 - **Les linéaires** : <p align="justify"> Lorsque les données sont linéairement séparables, nous utilisons "le SVM linéaire" et le "SGDClassifier" qui se distinguent par l'optimiseur appliqué pour la mise en oeuvre de la classification. En effet, le premier est aussi connu sous le nom de *soft margin classification* avec le paramètre de régularisation C, tandis que le deuxième est basé sur la descente de gradient.</p>
   
-- **Les non linéaires** : <p align="justify"> Lorsque les données ne sont pas linéairement séparables, nous pouvons transformer les features avec la fonction `PolynomialFeatures`. Cependant, cette approche n'est pas recommandée en cas d'un gros volume de données. Par conséquent, l'approche la plus fiable est de recourir aux SVM avec noyau (ou <em>kernel trick</em>). Ces derniers permettent permet d'avoir des modèles complexes adaptés aux grands datasets.</p>
+- **Les non linéaires** : <p align="justify"> Lorsque les données ne sont pas linéairement séparables, nous pouvons transformer les features avec la fonction `PolynomialFeatures`. Cependant, cette approche n'est pas recommandée en cas d'un gros volume de données. Par conséquent, l'approche la plus fiable est de recourir aux SVM avec noyau (ou <em>kernel trick</em>). Ces derniers permettent d'avoir des modèles complexes adaptés aux grands datasets.</p>
 
 
 ### 2) Évaluation des modèles (accuracy et F1-score) et choix
@@ -275,13 +275,13 @@ Enfin, nous procédons à la standardisation des variables quantitatives, à l�
 
 • **Mesure d'exactitude (accuracy) et taux d'erreur :** <p align="justify"> La précision correspond à la proportion des classifications bien prédites (vrais positifs et vrais négatifs) et répond donc à la question : "À quelle fréquence le modèle est-il correct ?". Le taux d’erreur permet de mesurer à quel point le modèle ne s'adapte pas bien aux données. Ainsi, **un bon modèle a une accuracy proche de 1 et un taux d'erreur proche de 0.**</p>
 
-• **F1-score :** <p align="justify"> Il permet d'évaluer la performance d'un modèle de classification et est particulièrement **préféré à l'accuray lorsque la variable cible est déséquilibrée**.  Il correspond à la moyenne de la précision (évite les faux positifs) et du recall (évite les faux négatifs). Ainsi, **un bon modèle a un score proche de 1.**</p>
+• **F1-score :** <p align="justify"> Il permet d'évaluer la performance d'un modèle de classification et est particulièrement **préféré à l'accuracy lorsque la variable cible est déséquilibrée**.  Il correspond à la moyenne de la précision (évite les faux positifs) et du recall (évite les faux négatifs). Ainsi, **un bon modèle a un score proche de 1.**</p>
 
 #### b) Présentation du raisonnement pour le choix du modèle final
 
 <p align="justify"> Dans le contexte d'un rééchantillonnage avec la méthode de <em>l'Undersampling</em> comme ici, le gros risque auquel tout développeur fait face est <strong>l'overfitting</strong> (ou le sur-ajustement). En effet, la réduction de la classe majoritaire contraint le modèle à apprendre sur moins d'observations et augmente donc le risque d'obtenir des modèles qui s'adaptent très bien voire trop sur les données d'entraînement. Cela aura alors pour conséquence de mauvaises performances sur les données du jeu test.
 
-<p align="justify"> Ce sur-ajustement est détectable au regard de l'écart entre les métriques des deux bases (jeu train et jeu tes) et principalement, celui du F1-score. Par conséquent, nous choisirons le modèle qui réduira au mieux cet écart pour avoir le moins possible de sur-ajsutement même s'il peut sembler être le moins performant par rapport aux autres modèles. <strong>Le sur-ajustement est considéré comme acceptable lorsque l’écart entre les performances sur les jeux d'entraînement et de test reste inférieur à 5-6%.</strong> </p>
+<p align="justify"> Ce sur-ajustement est détectable au regard de l'écart entre les métriques des deux bases (jeu train et jeu test) et principalement, celui du F1-score. Par conséquent, nous choisirons le modèle qui réduira au mieux cet écart pour avoir le moins possible de sur-ajustement même s'il peut sembler être le moins performant par rapport aux autres modèles. <strong>Le sur-ajustement est considéré comme acceptable lorsque l’écart entre les performances sur les jeux d'entraînement et de test reste inférieur à 5-6%.</strong> </p>
 
 <p align="justify"> Pour identifier le modèle qui s'adapte au mieux à nos données, nous allons d'abord comparer les différents modèles sans puis avec la cross-validation. La première analyse va nous permettre d'avoir un premier état des lieux de la présence d'overfitting. Ce dernier nous aiguillera sur les modèles à conserver avant la validation croisée. Une fois les modèles sélectionnés, nous les tunerons pour améliorer leurs performances, puis ferons une dernière comparaison afin de choisir le modèle final.</p>
 
@@ -345,7 +345,7 @@ Enfin, nous procédons à la standardisation des variables quantitatives, à l�
 
 <p align="center"><em>Source : Dossier SVM, Valorys Trillaud et Jasmine Dupau</em> </p>
 
-<p align="justify"> Le tableau ci-dessus nous montre l'accuracy moyenne après une validation croisée de 5 folds des 4 modèless conservés. Le modèle ayant obtenu la meilleure performance selon cette métrique est le SVM avec noyau linéaire, avec une moyenne de 0,51 sur les 5 folds. Cependant, il ressort comme étant le plus instable. Par conséquent, nous allons nous intéresser à l'ajustement des modèles au jeu test après leur optimisation.</p>
+<p align="justify"> Le tableau ci-dessus nous montre l'accuracy moyenne après une validation croisée de 5 folds des 4 modèles conservés. Le modèle ayant obtenu la meilleure performance selon cette métrique est le SVM avec noyau linéaire, avec une moyenne de 0,51 sur les 5 folds. Cependant, il ressort comme étant le plus instable. Par conséquent, nous allons nous intéresser à l'ajustement des modèles au jeu test après leur optimisation.</p>
 
 
 #### e) Optimisation des modèles
@@ -391,7 +391,7 @@ Une fois les modèles identifiés, nous avons procédé à leur optimisation à 
 
 <p align="center"><em>Source : Dossier SVM, Valorys Trillaud et Jasmine Dupau</em> </p>
 
-<p align="justify"> Ce tableau récapitule les indicateurs de performance de tous les modèles optimisés. Notre choix s’est ainsi porté sur le <strong>SGD Classifier</strong>. En effet, bien que ses performances en termes de F1-score soient légèrement inférieures à celles d’autres modèles, il présente l’un des <strong>écarts les plus faibles entre les jeux d’entraînement et de test</strong>, avec seulement <strong>6%</strong> d’écart pour le F1-score. De plus, il ressortait comme le plus stable lors de la validation croisée. Ce choix permet donc d'assurer une prédiction plus fiable sur des données à notre disposition. </p>
+<p align="justify"> Ce tableau récapitule les indicateurs de performance de tous les modèles optimisés. Notre choix s’est ainsi porté sur le <strong>SGD Classifier</strong>. En effet, bien que ses performances en termes de F1-score soient légèrement inférieures à celles d’autres modèles, il présente l’un des <strong>écarts les plus faibles entre les jeux d’entraînement et de test</strong>, avec seulement <strong>6%</strong> d’écart pour le F1-score. De plus, il ressortait comme le plus stable lors de la validation croisée. Ce choix permet donc d'assurer une prédiction plus fiable sur les données à notre disposition. </p>
 
 #### f) Importance des variables
 <p align="justify"> Avant d'entamer la dernière partie du rapport qui sera consacrée à l'interprétabilité du modèle, nous trouvions intéressant de représenter graphiquement l'importance des variables. 
@@ -405,7 +405,7 @@ Une fois les modèles identifiés, nous avons procédé à leur optimisation à 
 <p align="center"><em>Source : Dossier SVM, Valorys Trillaud et Jasmine Dupau</em> </p>
 
 
-<p align="justify"> Ce graphique présente l’importance des variables pour prédire le risque cardiaque. Les variables <em>Heart_rate</em> ainsi que <em>Exercise_Hours_Per_Week</em> sont celles qui discrétisent le mieux le risque cardiaque. Nous observons des résultats contre-intuitifs comme les variables <em>Obesity</em>, <em>Diabetes</em>  qui contribuent négativement à la probabilité d'avoir un risque cardiaque. Enfin, les variables <em>tension_artérielle</em>, <em>Sedentary_Hours_Per_Day</em> et <em>BMI</em> ont très peu d'importance dans ce modèle.</p>
+<p align="justify"> Ce graphique présente l’importance des variables pour prédire le risque cardiaque. Les variables <em>Heart_rate</em> ainsi que <em>Exercise_Hours_Per_Week</em> sont celles qui discrétisent le mieux le risque de crise cardiaque. Nous observons des résultats contre-intuitifs comme les variables <em>Obesity</em>, <em>Diabetes</em> qui contribuent négativement à la probabilité d'avoir un risque de crise cardiaque. Enfin, les variables <em>tension_artérielle</em>, <em>Sedentary_Hours_Per_Day</em> et <em>BMI</em> ont très peu d'importance dans ce modèle.</p>
 
 
 <p align="justify"> Pour aller plus loin dans l'interprétation de ce modèle, nous allons faire appel à des méthodes d'interprétation créées pour rendre les modèles de machine learning, qualifiés de "Black Box", plus compréhensibles. 
@@ -436,7 +436,7 @@ Ces méthodes sont classées en deux catégories : </p>
 
 <p align="justify"> D’après cette analyse, nous observons que <strong>l'âge, la fréquence cardiaque, le nombre d'heures d'activité physique par semaine, le niveau de stress et le revenu sont positivement corrélés avec le risque de crise cardiaque</strong>. Cela signifie que, une augmentation de ces facteurs est généralement associée à une augmentation du risque de crise cardiaque.</p>
 
-<p align="justify"> À l’inverse, certaines variables semblent avoir un effet négatif. En particulier, <strong>le taux de triglycérides, le nombre d'heures de sommeil par jour aisni que le nombre de jours d’activité physique par semaine sont négativement corrélés avec le risque de crise cardiaque</strong>.</p>
+<p align="justify"> À l’inverse, certaines variables semblent avoir un effet négatif. En particulier, <strong>le taux de triglycérides, le nombre d'heures de sommeil par jour ainsi que le nombre de jours d’activité physique par semaine sont négativement corrélés avec le risque de crise cardiaque</strong>.</p>
 
 *Nous avons également tenté de faire cette analyse avec les variables qualitatives, mais le code n'a pas fonctionné.*
 
